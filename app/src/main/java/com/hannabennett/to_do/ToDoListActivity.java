@@ -1,13 +1,13 @@
 package com.hannabennett.to_do;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ToDoListActivity extends AppCompatActivity {
+public class ToDoListActivity extends SingleFragmentActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_to_do_list);
+    protected Fragment createFragment() {
+        return ToDoListFragment.newInstance();
     }
 }
