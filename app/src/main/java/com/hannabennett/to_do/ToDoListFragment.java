@@ -7,10 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,9 +24,16 @@ public class ToDoListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_to_do_list, container, false);
 
+        List<Task> tasks = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            Task task = new Task();
+            task.setTitle("Task #" + i);
+            tasks.add(task);
+        }
+
         mToDoRecyclerView = (RecyclerView) view.findViewById(R.id.to_do_recycler_view);
         mToDoRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        mToDoRecyclerView.setAdapter(new TaskAdapter(tasks));
         return view;
     }
 
