@@ -7,6 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 /**
  * Created by HannaBennett on 12/5/17.
@@ -23,5 +28,57 @@ public class ToDoListFragment extends Fragment {
         mToDoRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
+    }
+
+    private class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        private TextView mTitleTextView;
+        private TextView mDueDateTextView;
+        private Task mTask;
+
+        public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
+            super(inflater.inflate(R.layout.list_item_task, parent, false));
+            itemView.setOnClickListener(this);
+
+            mTitleTextView = (TextView) itemView.findViewById(R.id.task_title);
+            mDateTextView = (TextView) itemView.findViewById(R.id.task_due_date);
+        }
+
+        public void bind(Task task) {
+            mTask = task;
+            mTitleTextView.setText(mTask.getTitle());
+            mDueDateTextView.setText(mTask.getDate().toString());
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT);
+        }
+    }
+
+    private class TaskAdapter extends RecyclerView.Adapter<TaskHolder> {
+        private List<Task> mTasks;
+
+        public TaskAdapter(List<Task> tasks) {
+            mTasks = tasks;
+        }
+
+        @Override
+        public TaskHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+
+            return new TaskHolder(layoutInflater, parent);
+        }
+
+        @Override
+        public void onBindViewHolder(TaskHolder holder, int position) {
+            Task task = mTasks.get(position);
+            holder.bind(task);
+        }
+
+        @Override
+        public int getItemCount() {
+            return mTasks.size();
+        }
     }
 }
