@@ -41,7 +41,7 @@ public class ToDoListFragment extends Fragment {
             itemView.setOnClickListener(this);
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.task_title);
-            mDateTextView = (TextView) itemView.findViewById(R.id.task_due_date);
+            mDueDateTextView = (TextView) itemView.findViewById(R.id.task_due_date);
         }
 
         public void bind(Task task) {
