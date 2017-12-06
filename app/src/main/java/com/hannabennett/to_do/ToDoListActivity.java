@@ -8,6 +8,6 @@ public class ToDoListActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return ToDoListFragment.newInstance();
+        return new ToDoListFragment();
     }
 }
