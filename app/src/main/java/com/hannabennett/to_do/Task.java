@@ -11,10 +11,12 @@ public class Task {
     private UUID mId;
     private String mTitle;
     private Date mDate;
+    private boolean mCompleted;
 
     public Task() {
         mId = UUID.randomUUID();
         mDate = new Date();
+        mCompleted = false;
     }
 
     public String getTitle() {
@@ -31,5 +33,13 @@ public class Task {
 
     public void setDate(Date date) {
         mDate = date;
+    }
+
+    public boolean isCompleted() {
+        return mCompleted;
+    }
+
+    public void setCompleted(boolean completed) {
+        mCompleted = completed;
     }
 }

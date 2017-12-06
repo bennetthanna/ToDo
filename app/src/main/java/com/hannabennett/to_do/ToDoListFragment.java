@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,9 @@ public class ToDoListFragment extends Fragment {
         for (int i = 0; i < 30; i++) {
             Task task = new Task();
             task.setTitle("Task #" + i);
+            if (i % 3 == 0) {
+                task.setCompleted(true);
+            }
             tasks.add(task);
         }
 
@@ -41,6 +45,7 @@ public class ToDoListFragment extends Fragment {
 
         private TextView mTitleTextView;
         private TextView mDueDateTextView;
+        private ImageView mCompletedImageView;
         private Task mTask;
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -49,12 +54,14 @@ public class ToDoListFragment extends Fragment {
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.task_title);
             mDueDateTextView = (TextView) itemView.findViewById(R.id.task_due_date);
+            mCompletedImageView = (ImageView) itemView.findViewById(R.id.task_completed);
         }
 
         public void bind(Task task) {
             mTask = task;
             mTitleTextView.setText(mTask.getTitle());
             mDueDateTextView.setText(mTask.getDate().toString());
+            mCompletedImageView.setVisibility(mTask.isCompleted() ? View.VISIBLE : View.GONE);
         }
 
         @Override
